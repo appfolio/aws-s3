@@ -1,4 +1,4 @@
-module AWS
+module OldAWS
   module S3
     class Connection #:nodoc:
       class << self
@@ -8,7 +8,7 @@ module AWS
         
         def prepare_path(path)
           path = path.remove_extended unless path.valid_utf8?
-          AWS::S3.escape_uri(path)
+          OldAWS::S3.escape_uri(path)
         end
       end
       
@@ -131,7 +131,7 @@ module AWS
         end
         
         def add_user_agent!(request)
-          request['User-Agent'] ||= "AWS::S3/#{Version}"
+          request['User-Agent'] ||= "OldAWS::S3/#{Version}"
         end
         
         def query_string_authentication(request, options = {})
@@ -153,19 +153,19 @@ module AWS
           base.extend ClassMethods
         end
         
-        # Manage the creation and destruction of connections for AWS::S3::Base and its subclasses. Connections are
+        # Manage the creation and destruction of connections for OldAWS::S3::Base and its subclasses. Connections are
         # created with establish_connection!.
         module ClassMethods
           # Creates a new connection with which to make requests to the S3 servers for the calling class.
           #   
-          #   AWS::S3::Base.establish_connection!(:access_key_id => '...', :secret_access_key => '...')
+          #   OldAWS::S3::Base.establish_connection!(:access_key_id => '...', :secret_access_key => '...')
           #
-          # You can set connections for every subclass of AWS::S3::Base. Once the initial connection is made on
+          # You can set connections for every subclass of OldAWS::S3::Base. Once the initial connection is made on
           # Base, all subsequent connections will inherit whatever values you don't specify explictly. This allows you to
           # customize details of the connection, such as what server the requests are made to, by just specifying one 
           # option. 
           #
-          #   AWS::S3::Bucket.established_connection!(:use_ssl => true)
+          #   OldAWS::S3::Bucket.established_connection!(:use_ssl => true)
           #
           # The Bucket connection would inherit the <tt>:access_key_id</tt> and the <tt>:secret_access_key</tt> from
           # Base's connection. Unlike the Base connection, all Bucket requests would be made over SSL.
@@ -192,7 +192,7 @@ module AWS
           # with the <tt>:proxy</tt> option.
           # The <tt>:host</tt> setting is required if specifying a <tt>:proxy</tt>. 
           #   
-          #   AWS::S3::Bucket.established_connection!(:proxy => {
+          #   OldAWS::S3::Bucket.established_connection!(:proxy => {
           #     :host => '...', :port => 8080, :user => 'marcel', :password => 'secret'
           #   })
           def establish_connection!(options = {})
@@ -239,7 +239,7 @@ module AWS
             end
 
             def default_connection_name
-              'AWS::S3::Base'
+              'OldAWS::S3::Base'
             end
 
             def default_connection

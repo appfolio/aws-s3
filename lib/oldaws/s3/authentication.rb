@@ -1,6 +1,6 @@
-module AWS
+module OldAWS
   module S3    
-    # All authentication is taken care of for you by the AWS::S3 library. None the less, some details of the two types
+    # All authentication is taken care of for you by the OldAWS::S3 library. None the less, some details of the two types
     # of authentication and when they are used may be of interest to some.
     #
     # === Header based authentication
