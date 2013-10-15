@@ -5,7 +5,7 @@ require 'rake/rdoctask'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
 
-require File.dirname(__FILE__) + '/lib/aws/s3'
+require File.dirname(__FILE__) + '/lib/oldaws/s3'
 
 def library_root
   File.dirname(__FILE__)
@@ -59,7 +59,7 @@ end
 namespace :dist do  
   spec = Gem::Specification.new do |s|
     s.name              = 'oldaws-s3'
-    s.version           = Gem::Version.new(AWS::S3::Version)
+    s.version           = Gem::Version.new(OldAWS::S3::Version)
     s.summary           = "Client library for Amazon's Simple Storage Service's REST API"
     s.description       = s.summary
     s.email             = 'marcel@vernix.org'
